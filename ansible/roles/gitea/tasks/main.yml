@@ -1,0 +1,7 @@
+- name: Containers are pulled
+  shell: /usr/local/bin/docker-compose --project-directory /vagrant pull gitea
+  tags: [service]
+
+- name: Containers are running
+  shell: /usr/local/bin/docker-compose --project-directory /vagrant up -d gitea
+  tags: [service]
