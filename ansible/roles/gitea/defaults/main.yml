@@ -1,0 +1,10 @@
+ports:
+  - "3000:3000"
+  - "2223:22"
+
+directories:
+  - /home/vagrant/gitea
+
+# TODO bind to host directory OR docker volume with backup
+volumes:
+  - /home/vagrant/gitea:/data/

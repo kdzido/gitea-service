@@ -1,7 +1,20 @@
-- name: Containers are pulled
-  shell: /usr/local/bin/docker-compose --project-directory /vagrant pull gitea
-  tags: [service]
+- name: Directories are present
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: vagrant
+  with_items: "{{ directories }}"
+  tags: [gitea]
 
-- name: Containers are running
-  shell: /usr/local/bin/docker-compose --project-directory /vagrant up -d gitea
-  tags: [service]
+- name: Container is running
+  docker_container:
+    image: gitea/gitea:latest
+    name: gitea
+    state: started
+    restart_policy: always
+    env:
+      USER_UID: 1000
+      USER_GID: 1000
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"
+  tags: [gitea]
