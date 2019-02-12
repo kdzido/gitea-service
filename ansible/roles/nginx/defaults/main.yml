@@ -1,5 +1,5 @@
 ports:
-  - '80:80'
+  - '443:443'
 
 directories:
   - /data/nginx/conf.d
@@ -17,3 +17,6 @@ volumes:
   - /data/nginx/conf.d:/etc/nginx/conf.d
   - /data/nginx/includes:/etc/nginx/includes
   - /data/nginx/upstreams:/etc/nginx/upstreams
+  - /vagrant/ssl/nginx-selfsigned.crt:/etc/ssl/nginx-selfsigned.crt
+  - /vagrant/ssl/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key
+  - /vagrant/ssl/dhparam.pem:/etc/ssl/dhparam.pem

@@ -1,18 +1,22 @@
 Purpose: Self-sustained Gitea service for hosting Git repositories on own laptop.
 
+Generate self-signed X509 certs for https:
+cd ssl/
+./generate-certs.sh
+
 Run:
 vagrant up
 
 Configure root URL in /home/vagrant/gitea/gitea/conf/app.ini:
-[server] ROOT_URL = http://10.10.33.100/git/
+[server] ROOT_URL = https://10.10.33.100/gitea/
 
-vagrant reload
+vagrant reload --provision
 
 Finish installation in browser:
-http://10.10.33.100/gitea/install
+https://10.10.33.100/gitea/install
 
 Redeploy everything (data is kept unless directories registry/, registry-mirror/ are deleted):
-vagrant reload --provision
+vagrant provision
 
 NOTE: all gitea data is lost on VM destruction as it's stored under /home/vagrant/gitea/
 
